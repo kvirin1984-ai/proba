@@ -22,6 +22,7 @@ def set():
             print(dt)
             t = dt.timestamp()
             print(t)
+            label.config(text=f'Напоминание на {hour:02}:{minute:02}')
         except Exception as e:
             mb.showerror('Ошибка', f'Произошла ошибка: {e}')
 
@@ -56,7 +57,7 @@ window = Tk()
 window.title("Напоминание")
 WIDTH = window.winfo_screenwidth()
 HEIGHT = window.winfo_screenheight()
-X = 300
+X = 320
 Y = 250
 window.geometry(f"{X}x{Y}+{WIDTH // 2 - X // 2}+{HEIGHT // 2 - Y // 2 - 25}")
 label =Label(text='Установите напоминание', font=('Arial', 14, 'bold'))
