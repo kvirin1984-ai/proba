@@ -5,8 +5,10 @@ import datetime
 import time
 import pygame
 
+t = 0
 
 def set():
+    global t
     rem = sd.askstring('Время напоминания', 'введите время напоминания '
                                             'в формате ЧЧ:ММ в 24 часовом формате')
     if rem:
@@ -22,8 +24,24 @@ def set():
         except Exception as e:
             mb.showerror('Ошибка', f'Произошла ошибка: {e}')
 
+
+def check():
+    global t
+    if t:
+        now = time.time()
+        if now >= t:
+            play_snd()
+            t = 0
+    window.after(10000, check)
+
+
 window = Tk()
 window.title("Напоминание")
+WIDTH = window.winfo_screenwidth()
+HEIGHT = window.winfo_screenheight()
+X = 300
+Y = 250
+window.geometry(f"{X}x{Y}+{WIDTH // 2 - X // 2}+{HEIGHT // 2 - Y // 2 - 25}")
 label =Label(text='Установите напоминание')
 label.pack(pady=10)
 set_button = Button(text='Установить напоминание', command=set)
