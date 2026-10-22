@@ -17,7 +17,7 @@ def set():
             minute = int(rem.split(':')[1])
             now = datetime.datetime.now()
             print(now)
-            dt = now.replace(hour=hour, minute=minute)
+            dt = now.replace(hour=hour, minute=minute, second=0)
             print(dt)
             t = dt.timestamp()
             print(t)
@@ -37,7 +37,7 @@ def check():
 
 def play_snd():
     pygame.mixer.init()
-    pygame.mixer.music.load('reminder.mp3')
+    pygame.mixer.music.load('music.mp3')
     pygame.mixer.music.play()
 
 window = Tk()
@@ -47,11 +47,11 @@ HEIGHT = window.winfo_screenheight()
 X = 300
 Y = 250
 window.geometry(f"{X}x{Y}+{WIDTH // 2 - X // 2}+{HEIGHT // 2 - Y // 2 - 25}")
-label =Label(text='Установите напоминание')
+label =Label(text='Установите напоминание', font=('Arial', 14, 'bold'))
 label.pack(pady=10)
 set_button = Button(text='Установить напоминание', command=set)
 set_button.pack()
 
-
+check()
 
 window.mainloop()
